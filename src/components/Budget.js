@@ -4,28 +4,26 @@ import { AppContext } from '../context/AppContext';
 
 const Budget = () => {
     const { budget, currency, dispatch, remaining } = useContext(AppContext);
-    const [showOversoent, setShowOversoent] = useState(false);
+    const [showOverspent, setShowOverspent] = useState(false);
     const [showWarning, setShowWarning] = useState(false);
 
     const handleBudgetChange = (event) => {
         const newValue = parseInt(event.target.value);
-        console.log(remaining)
+        // console.log(remaining)
+        dispatch({
+            type: 'SET_BUDGET',
+            payload: newValue
+        })
         if (newValue > 20000) {
             setShowWarning(true)
         } else{
             // setNewBudget(newValue);
-            setShowWarning(false);
-            // console.log("bgt1", budget);
-            dispatch({
-                type: 'SET_BUDGET',
-                payload: newValue
-            })
-            // console.log("bgt2", budget); 
+            setShowWarning(false); 
         }
         if (remaining < 0) {
-            setShowOversoent(true)
+            setShowOverspent(true)
         } else {
-            setShowOversoent(false)
+            setShowOverspent(false)
         }
       };
     // const totalExpenses = expenses.reduce((total, item) => {
@@ -44,7 +42,7 @@ const Budget = () => {
                     >
                 </input>
                 {showWarning && <p>Value should not exceeds 20000</p>}
-                {showOversoent && <p>Budget should not be lower than spending</p>}
+                {showOverspent && <p>Budget should not be lower than spending</p>}
             </span>
         </div>
     );
