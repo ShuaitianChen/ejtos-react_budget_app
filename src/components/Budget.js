@@ -13,17 +13,21 @@ const Budget = () => {
             alert("Value should not exceeds 20000");
             return;
         }
-        if (totalExpenses > budget) {
-            alert("Budget should not be lower than spending");
-            return;
-        }
+        // if (totalExpenses > budget) {
+        //     alert("Budget should not be lower than spending");
+        //     return;
+        // }
 
-        if (newValue <= 20000 && totalExpenses <= budget){
-            dispatch({
-                type: 'SET_BUDGET',
-                payload: newValue
-            });
-        }
+        // if (newValue <= 20000 && totalExpenses <= budget){
+        //     dispatch({
+        //         type: 'SET_BUDGET',
+        //         payload: newValue
+        //     });
+        // }
+        dispatch({
+            type: 'SET_BUDGET',
+            payload: newValue
+        });
       };
 
     return (
